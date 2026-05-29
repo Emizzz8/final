@@ -1,1 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>商業後台 Dashboard</title>
 
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-gray-100">
+
+  <div class="flex h-screen">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-slate-900 text-white hidden md:flex flex-col">
+
+      <div class="p-6 text-2xl font-bold border-b border-slate-700">
+        Business Admin
+      </div>
+
+      <nav class="flex-1 p-4 space-y-2">
+
+        <a href="#" class="block px-4 py-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition">
+          Dashboard
+        </a>
+
+        <a href="#" class="block px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+          Users
+        </a>
+
+        <a href="#" class="block px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+          Orders
+        </a>
+
+        <a href="#" class="block px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+          Products
+        </a>
+
+        <a href="#" class="block px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+          Analytics
+        </a>
+
+        <a href="#" class="block px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+          Settings
+        </a>
+
+      </nav>
+
+    </aside>
+
+    <!-- Main -->
+    <main class="flex-1 overflow-y-auto">
+
+      <!-- Header -->
+      <header class="bg-white shadow-sm px-8 py-5 flex justify-between items-center">
+
+        <div>
+          <h1 class="text-3xl font-bold text-gray-800">
+            Dashboard
+          </h1>
+
+          <p class="text-gray-500 mt-1">
+            Welcome back 👋
+          </p>
+        </div>
+
+        <div class="flex items-center gap-4">
+
+          <input
+            type="text"
+            placeholder="Search..."
+            class="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <img
+            src="https://i.pravatar.cc/40"
+            class="w-10 h-10 rounded-full"
+          />
+
+        </div>
+
+      </header>
+
+      <!-- Content -->
+      <section class="p-8">
+
+        <!-- Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+
+          <div class="bg-white rounded-2xl p-6 shadow-sm">
+            <p class="text-gray-500">Revenue</p>
+            <h2 class="text-3xl font-bold mt-2">$45,200</h2>
+            <span class="text-green-500 text-sm">+12.5%</span>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 shadow-sm">
+            <p class="text-gray-500">Users</p>
+            <h2 class="text-3xl font-bold mt-2">1,240</h2>
+            <span class="text-green-500 text-sm">+8.2%</span>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 shadow-sm">
+            <p class="text-gray-500">Orders</p>
+            <h2 class="text-3xl font-bold mt-2">320</h2>
+            <span class="text-red-500 text-sm">-2.4%</span>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 shadow-sm">
+            <p class="text-gray-500">Conversion</p>
+            <h2 class="text-3xl font-bold mt-2">4.8%</h2>
+            <span class="text-green-500 text-sm">+1.1%</span>
+          </div>
+
+        </div>
+
+        <!-- Charts -->
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mt-8">
+
+          <!-- Sales Chart -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm xl:col-span-2">
+
+            <div class="flex justify-between items-center mb-6">
+              <h3 class="text-xl font-semibold">
+                Sales Overview
+              </h3>
+            </div>
+
+            <canvas id="salesChart"></canvas>
+
+          </div>
+
+          <!-- Pie Chart -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm">
+
+            <h3 class="text-xl font-semibold mb-6">
+              Traffic Sources
+            </h3>
+
+            <canvas id="trafficChart"></canvas>
+
+          </div>
+
+        </div>
+
+        <!-- Table -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm mt-8">
+
+          <div class="flex justify-between items-center mb-6">
+
+            <h3 class="text-xl font-semibold">
+              Recent Orders
+            </h3>
+
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
+              Export
+            </button>
+
+          </div>
+
+          <div class="overflow-x-auto">
+
+            <table class="w-full">
+
+              <thead>
+
+                <tr class="border-b">
+
+                  <th class="text-left py-4">Customer</th>
+                  <th class="text-left py-4">Product</th>
+                  <th class="text-left py-4">Amount</th>
+                  <th class="text-left py-4">Status</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <tr class="border-b hover:bg-gray-50">
+
+                  <td class="py-4">John Chen</td>
+                  <td>Premium Plan</td>
+                  <td>$199</td>
+
+                  <td>
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+                      Paid
+                    </span>
+                  </td>
+
+                </tr>
+
+                <tr class="border-b hover:bg-gray-50">
+
+                  <td class="py-4">Amy Lin</td>
+                  <td>Business Package</td>
+                  <td>$599</td>
+
+                  <td>
+                    <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">
+                      Pending
+                    </span>
+                  </td>
+
+                </tr>
+
+                <tr class="hover:bg-gray-50">
+
+                  <td class="py-4">David Wang</td>
+                  <td>Enterprise Plan</td>
+                  <td>$1200</td>
+
+                  <td>
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
+                      Processing
+                    </span>
+                  </td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <script>
+
+    // Sales Chart
+    const salesCtx = document.getElementById('salesChart');
+
+    new Chart(salesCtx, {
+      type: 'line',
+
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+
+        datasets: [{
+          label: 'Revenue',
+
+          data: [12000, 19000, 15000, 25000, 22000, 32000],
+
+          borderColor: '#2563eb',
+
+          backgroundColor: 'rgba(37,99,235,0.1)',
+
+          tension: 0.4,
+
+          fill: true
+        }]
+      },
+
+      options: {
+        responsive: true
+      }
+    });
+
+    // Traffic Chart
+    const trafficCtx = document.getElementById('trafficChart');
+
+    new Chart(trafficCtx, {
+      type: 'doughnut',
+
+      data: {
+        labels: ['Google', 'Facebook', 'Direct', 'YouTube'],
+
+        datasets: [{
+          data: [45, 25, 20, 10],
+
+          backgroundColor: [
+            '#2563eb',
+            '#16a34a',
+            '#f59e0b',
+            '#dc2626'
+          ]
+        }]
+      },
+
+      options: {
+        responsive: true
+      }
+    });
+
+  </script>
+
+</body>
+</html>
