@@ -1,0 +1,24 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+# ① 建立 FastAPI app（一定要最上面）
+app = FastAPI()
+
+# ② CORS（讓前端可以連後端）
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 開發階段先用 *
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# ③ API 路由（Dashboard資料）
+@app.get("/dashboard")
+def get_dashboard():
+    return {
+        "revenue": 45200,
+        "users": 1240,
+        "orders": 320,
+        "conversion": 4.8
+    }
